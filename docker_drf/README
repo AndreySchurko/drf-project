@@ -1,0 +1,27 @@
+HTML version: http://127.0.0.1:8000/
+
+API Homepage: http://127.0.0.1:8000/api/
+CREATE, UPDATE, EDIT, DELETE Users: http://127.0.0.1:8000/api/users/
+CREATE, UPDATE, EDIT, DELETE Image Sizes: http://127.0.0.1:8000/api/image-sizes/
+CREATE, UPDATE, EDIT, DELETE Account Tiers: http://127.0.0.1:8000/api/account-tiers/
+CREATE, UPDATE, EDIT, DELETE Image List (for users): http://127.0.0.1:8000/api/image-list/
+List of published images (GET): http://127.0.0.1:8000/api/image-list/published-images/
+Links to thumbnail images (GET): http://127.0.0.1:8000/api/get-links/<str:id>/
+
+Default Admin:
+login: admin@mysite.com
+password: 1234
+
+Default Users:
+
+User 1 (Basic Plan):
+login: basic@mysite.com
+password: Bas1234@
+
+User 2 (Premium Plan):
+login: premium@mysite.com
+password: Pre1234@
+
+User 3 (Enterprise Plan):
+login: enterprise@mysite.com
+password: Ent1234@

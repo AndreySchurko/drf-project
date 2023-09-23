@@ -1,0 +1,33 @@
+/* PASSWORD CONTROL */
+#togglePassword-1 {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+    color:#333333;
+}
+.eye-icon{
+	background-image: url("../img/eye-slash.svg");
+	background-repeat: no-repeat;
+}
+.eye-icon-slash{
+	background-image: url("../img/eye.svg");
+	background-repeat: no-repeat;
+}
+/* PASSWORD CONTROL */
+
+/* List Style Ok */
+.li_image_style {
+  list-style: none;
+}
+.li_image_style::before {
+  content: '';
+  display: inline-block;
+  height: 0.875rem;
+  width: 0.875rem;
+  margin-right: 0.5rem;
+  background-image: url("../img/list_ok.svg");
+}
+/* List Style Ok */

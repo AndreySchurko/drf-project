@@ -1,0 +1,57 @@
+                <!-- ========== MESSAGES ========== -->
+                {% if messages %}
+                    {% for message in messages %}
+                            {% if message.tags == "info" %}
+                                <div id="alert-1" class="alert-pos flex max-w-3xl mx-auto items-center p-4 mb-4 mt-4 text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+                                  <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                  </svg>
+                                  <span class="sr-only">Info</span>
+                                  <div class="ml-3 text-sm font-medium">
+                                    {{ message|safe }}
+                                  </div>
+                                </div>
+                            {% elif message.tags == "error" %}
+                                <div id="alert-2" class="alert-pos flex max-w-3xl mx-auto items-center p-4 mb-4 mt-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                  <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                  </svg>
+                                  <span class="sr-only">Info</span>
+                                  <div class="ml-3 text-sm font-medium">
+                                    {{ message|safe }}
+                                  </div>
+                                </div>
+                            {% elif message.tags == "success" %}
+                                <div id="alert-3" class="alert-pos flex max-w-3xl mx-auto items-center p-4 mb-4 mt-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                                  <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                  </svg>
+                                  <span class="sr-only">Info</span>
+                                  <div class="ml-3 text-sm font-medium">
+                                    {{ message|safe }}
+                                  </div>
+                                </div>
+                            {% elif message.tags == "warning" %}
+                                <div id="alert-4" class="alert-pos flex max-w-3xl mx-auto items-center p-4 mb-4 mt-4 text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
+                                  <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                  </svg>
+                                  <span class="sr-only">Info</span>
+                                  <div class="ml-3 text-sm font-medium">
+                                    {{ message|safe }}
+                                  </div>
+                                </div>
+                            {% elif message.tags == "debug" %}
+                                <div id="alert-5" class="alert-pos flex max-w-3xl mx-auto items-center p-4 mb-4 mt-4 rounded-lg bg-gray-50 dark:bg-gray-800" role="alert">
+                                  <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                                  </svg>
+                                  <span class="sr-only">Info</span>
+                                  <div class="ml-3 text-sm font-medium text-gray-800 dark:text-gray-300">
+                                    {{ message|safe }}
+                                  </div>
+                                </div>
+                            {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <!-- ========== END MESSAGES ========== -->

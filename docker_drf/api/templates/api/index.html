@@ -1,0 +1,67 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %}DRF Project{% endblock %}
+
+{% block content %}
+{% if images %}
+<!-- Blog Article -->
+{% for image in images %}
+<div class="max-w-3xl px-4 pt-6 lg:pt-10 pb-12 sm:px-6 lg:px-8 mx-auto">
+  <div class="max-w-2xl">
+
+    <!-- Avatar Media -->
+    <div class="flex justify-between items-center mb-6">
+      <div class="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
+        <div class="grow">
+          <div class="grid sm:flex sm:justify-between sm:items-center gap-2">
+            <div>
+              <!-- Tooltip -->
+              <div class="hs-tooltip inline-block [--trigger:hover] [--placement:bottom]">
+                <div class="hs-tooltip-toggle sm:mb-1 block text-left cursor-pointer">
+                  <span class="font-semibold text-gray-800 dark:text-gray-200">
+                    {% if image.user_id.first_name and image.user_id.last_name %}
+                    {{image.user_id.first_name}} {{image.user_id.last_name}}
+                    {% elif image.user_id.first_name %}
+                    {{image.user_id.first_name}}
+                    {% else %}
+                    {{image.user_id.email}}
+                    {% endif %}
+                  </span>
+                  <!-- End Dropdown Card -->
+                </div>
+              </div>
+              <!-- End Tooltip -->
+
+              <ul class="text-xs text-gray-500">
+                <li class="inline-block relative pr-6 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-2 before:-translate-y-1/2 before:w-1 before:h-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
+                  Created: {{image.created|date:"M j, Y"}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Avatar Media -->
+
+    <!-- Content -->
+    <div class="space-y-5 md:space-y-8">
+      <div class="space-y-3">
+        <h2 class="text-2xl font-bold md:text-3xl dark:text-white">{{image.title}}</h2>
+      </div>
+      <figure>
+        <img class="w-full object-cover rounded-xl" src="{{image.default_image|thumbnail_url:'small'}}" alt="{{image.title}}">
+        <figcaption class="mt-3 text-sm text-center text-gray-500">
+          Photo by {{image.author}}
+        </figcaption>
+      </figure>
+    </div>
+    <!-- End Content -->
+  </div>
+</div>
+{% endfor %}
+<!-- End Blog Article -->
+{% endif %}
+{% endblock %}

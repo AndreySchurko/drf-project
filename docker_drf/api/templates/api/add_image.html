@@ -1,0 +1,158 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Upload image | DRF Project{% endblock %}
+
+{% block content %}
+<div class="h-full">
+  <div class="dark:bg-slate-900 bg-gray-50 flex h-full items-center">
+    <main class="w-full max-w-3xl mx-auto p-6">
+      <div class="bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-4 sm:p-7">
+          <div class="text-center">
+            <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Add Image</h1>
+          </div>
+
+          <div class="mt-5">
+
+            <!-- Form -->
+            <form action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="grid gap-y-4">
+
+                <!-- Form Group -->
+                <div class="col-span-full">
+                  <div>
+                    <div class="relative">
+                      <div class="flex items-center justify-center w-full">
+                        <label for="id_default_image" class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
+                                </svg>
+                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload image</span> or drag and drop</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">JPG/JPEG or PNG files (MAX. 20 MB)</p>
+                            </div>
+                            {{img_form.default_image}}
+                        </label>
+                      </div>
+                    </div>
+                    <ul class="space-y-1 text-green-600 text-sm font-semibold mt-2 list-inside dark:text-green-400" id="file_output"></ul>
+                  </div>
+                </div>
+                <!-- End Form Group -->
+
+                <div class="grid gap-6 mb-6 md:grid-cols-2">
+                  <!-- Form Group -->
+                  <div>
+                    <label for="id_title" class="block text-sm mb-2 dark:text-white">{{img_form.title.label}}</label>
+                    <div class="relative">
+                      {{img_form.title}}
+                      {% if img_form.title.errors %}
+                      <div class="absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
+                        <svg class="h-5 w-5 text-red-500" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                        </svg>
+                      </div>
+                      {% endif %}
+                      <p class="mt-1 text-xs text-gray-600 dark:text-gray-600">{{img_form.title.help_text}}</p>
+                    </div>
+                    {% if img_form.title.errors %}
+                      {% for error in img_form.title.errors %}
+                        <p class="text-xs text-red-600 mt-2" id="first_name-error">{{error|striptags}}</p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <!-- End Form Group -->
+
+                  <!-- Form Group -->
+                  <div>
+                    <label for="id_author" class="block text-sm mb-2 dark:text-white">{{img_form.author.label}}</label>
+                    <div class="relative">
+                      {{img_form.author}}
+                      {% if img_form.author.errors %}
+                      <div class="absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
+                        <svg class="h-5 w-5 text-red-500" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                        </svg>
+                      </div>
+                      {% endif %}
+                    </div>
+                    {% if img_form.author.errors %}
+                      {% for error in img_form.author.errors %}
+                        <p class="text-xs text-red-600 mt-2" id="last_name-error">{{error|striptags}}</p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <!-- End Form Group -->
+                </div>
+
+
+                <div class="grid gap-6 mb-6 md:grid-cols-2">
+                  <!-- Form Group -->
+                  <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+                      {{img_form.published}}
+                      <label for="id_published" class="w-full py-4 ml-2 text-sm font-normal text-gray-900 dark:text-gray-300">{{img_form.published.help_text}}</label>
+                  </div>
+                  <!-- End Form Group -->
+
+                  {% if current_user.profile.expires_img_link %}
+                  <!-- Form Group -->
+                  <div>
+                    <div class="relative">
+                      {{img_form.expires}}
+                      <p class="mt-1 text-xs text-gray-600 dark:text-gray-600">{{img_form.expires.help_text}}</p>
+                    </div>
+                    {% if img_form.expires.errors %}
+                      {% for error in img_form.expires.errors %}
+                        <p class="text-xs text-red-600 mt-2" id="street_2-error">{{error|striptags}}</p>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                  <!-- End Form Group -->
+                  {% endif %}
+
+                </div>
+                <button type="submit" class="w-full max-w-xl mx-auto py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">Upload Image</button>
+              </div>
+            </form>
+            <!-- End Form -->
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<script>
+  function formatBytes(bytes, decimals = 1) {
+        if (bytes === 0) {
+            return '0';
+        } else {
+            var k = 1024;
+            var dm = decimals < 0 ? 0 : decimals;
+            var sizes = ['b', 'KB', 'MB', 'GB', 'TB'];
+            var i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
+    }
+
+  const fileoutput1 = document.getElementById('file_output');
+
+  if (window.FileList && window.File) {
+    document.getElementById('id_default_image').addEventListener('change', event => {
+      fileoutput1.innerHTML = '';
+      for (const file of event.target.files) {
+        const li = document.createElement('li');
+        const name = file.name ? file.name : 'NOT SUPPORTED';
+        const type = file.type ? file.type : 'NOT SUPPORTED';
+        let size = file.size ? file.size : 'NOT SUPPORTED';
+        const filesize = formatBytes(size)
+        li.textContent = `Filename: ${name}, type: ${type}, size: ${filesize}`;
+        li.classList.add('li_image_style');
+        fileoutput1.appendChild(li);
+      }
+    });
+  }
+</script>
+{% endblock %}
